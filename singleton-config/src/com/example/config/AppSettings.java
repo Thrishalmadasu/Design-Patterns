@@ -5,9 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
 
-/**
- * not thread-safe, reload allowed anytime, mutable global state, reflection+serialization-friendly.
- */
 public final class AppSettings implements Serializable {
     private final Properties props = new Properties();
     private static volatile AppSettings instance;
