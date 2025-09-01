@@ -14,7 +14,7 @@ public class Order {
     public Order(Builder builder) {
         this.id = builder.id;
         this.customerEmail = builder.customerEmail;
-        this.lines = builder.lines;
+        this.lines = new ArrayList<>(builder.lines);
         this.discountPercent = builder.discountPercent;
         this.expedited = builder.expedited;
         this.notes = builder.notes;
