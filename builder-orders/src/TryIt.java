@@ -7,7 +7,9 @@ public class TryIt {
         OrderLine l2 = new OrderLine("B", 3, 100);
         Order o = new Order.Builder().setId("o2").setCustomerEmail("a@b.com").addLine(l1).addLine(l2).setDiscountPercent(10).build();
         System.out.println("Before: " + o.totalAfterDiscount());
-        // l1.setQuantity(999); // this will throw an exception
+        l1.setQuantity(999);
+        System.out.println(o.getLines().get(0).getQuantity());
+        System.out.println(l1.getQuantity());
         System.out.println("After:  " + o.totalAfterDiscount());
     }
 }

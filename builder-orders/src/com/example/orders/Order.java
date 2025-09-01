@@ -14,10 +14,16 @@ public class Order {
     public Order(Builder builder) {
         this.id = builder.id;
         this.customerEmail = builder.customerEmail;
-        this.lines = new ArrayList<>(builder.lines);
+        this.lines = defensiveCopy(builder.lines);
         this.discountPercent = builder.discountPercent;
         this.expedited = builder.expedited;
         this.notes = builder.notes;
+    }
+
+    private static List<OrderLine> defensiveCopy(List<OrderLine> lines) {
+        List<OrderLine> copy = new ArrayList<>();
+        for (OrderLine l : lines) copy.add(new OrderLine(l));
+        return copy;
     }
 
     public static class Builder {
@@ -40,7 +46,7 @@ public class Order {
     public String getId() { return id; }
     public String getCustomerEmail() { return customerEmail; }
     public List<OrderLine> getLines() {
-        return new ArrayList<>(lines);
+        return defensiveCopy(lines);
     }
     public Integer getDiscountPercent() { return discountPercent; }
     public boolean isExpedited() { return expedited; }
